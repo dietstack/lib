@@ -26,7 +26,7 @@ create_db_osadmin() {
     local ROOT_DB_PASSWD=$3
     local SVC_DB_PASSWD=$4
     echo "Creating $DB_NAME database ..."
-    MYSQL_CMD="docker run --rm --net=host osadmin mysql -h 127.0.0.1 -P 3306 -u root -p$ROOT_DB_PASSWD"
+    MYSQL_CMD="docker run --rm --net=host ${DOCKER_PROJ_NAME}osadmin mysql -h 127.0.0.1 -P 3306 -u root -p$ROOT_DB_PASSWD"
     $MYSQL_CMD -e "CREATE DATABASE $DB_NAME;"
     $MYSQL_CMD -e "CREATE USER '$USER_NAME'@'%' IDENTIFIED BY '$SVC_DB_PASSWD';"
     $MYSQL_CMD -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$USER_NAME'@'%' WITH GRANT OPTION;"
