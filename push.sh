@@ -5,8 +5,8 @@ set -e
 # We need to set two variables in order to be able to login
 # to public docker hub: $DOCKER_LOGIN and $DOCKER_PASS
 
-test -z $DOCKER_LOGIN && echo "DOCKER_LOGIN not set"
-test -z $DOCKER_PASS && echo "DOCKER_PASS not set"
+test -z $DOCKER_LOGIN && { echo "DOCKER_LOGIN not set" && exit 1; }
+test -z $DOCKER_PASS && { echo "DOCKER_PASS not set" && exit 1; }
 
 # Git project name has to start with 'docker-'
 
