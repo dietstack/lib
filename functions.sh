@@ -46,4 +46,15 @@ create_db_osadmin() {
     fi
 }
 
-
+get_full_version() {
+    # set version based on the git commit                                                               
+    local VERSION=$(git describe --abbrev=7 --tags)
+    local BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    
+    local TAG_BRANCH=""
+    if [ ${BRANCH} != "master" ]; then
+            local TAG_BRANCH=${BRANCH}-
+    fi
+    local FULL_VERSION=${TAG_BRANCH}${VERSION}
+    echo $FULL_VERSION
+}
